@@ -7,7 +7,7 @@ This allows Zerops to easily run multiple processes on a single container.
 This example shows how to run Node.js application that uses SQLite along with [Litestream](https://litestream.io/),
 to persist the database throughout deployments.
 
-### zerops.yml
+### [zerops.yml](https://github.com/zeropsio/start-commands-example/blob/main/zerops.yml)
 ```yaml
 zerops:
   - setup: api
@@ -61,7 +61,7 @@ zerops:
 ```
 
 
-### litestream.yml
+### [litestream.yml](https://github.com/zeropsio/start-commands-example/blob/main/litestream.yml)
 Litestream configuration file. Litestream automatically replaces
 environment varibles, so we make use of the env variables Zerops
 automatically generates for our object storage service.
@@ -97,3 +97,7 @@ services:
     buildFromGit: https://github.com/zeropsio/start-commands-example
     enableSubdomainAccess: true
 ```
+
+Filter logs in Zerops GUI
+<img width="1647" alt="image" src="https://github.com/user-attachments/assets/5710a157-3b5d-4f6a-ad17-a8c20669d1fb">
+
