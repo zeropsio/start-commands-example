@@ -5,7 +5,7 @@ dbs:
   - path: $DB_NAME
     replicas:
       - type: s3
+        path: $DB_NAME
         bucket: $storage_bucketName
         endpoint: $storage_apiUrl
-        path: $DB_NAME
         force-path-style: true

@@ -7,7 +7,7 @@ const app = express();
 
 const connectDB = async () => {
   return open({
-    filename: 'database.db',
+    filename: process.env.DB_NAME || 'database.db',
     driver: sqlite3.Database
   });
 };
@@ -31,8 +31,9 @@ app.get('/', async (_, res) => {
 
   res.status(201).send({
     message: `This is a simple, basic Node.js / Express.js application running on Zerops.io,
-      each request adds an entry to the SQLite database and returns a count.
-      See the source repository (https://github.com/zeropsio/recipe-nodejs) for more information.`,
+      demonstrating multiple start commands through Litestream SQLite replication.
+      Each request adds an entry to the SQLite database and returns a count.
+      See the source repository (https://github.com/zeropsio/start-commands-example) for more information.`,
     newEntry: data,
     count: count
   });
