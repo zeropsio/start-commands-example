@@ -1,8 +1,8 @@
 # Zerops startCommands example
 
-Zerops containers are based on [Incus](https://linuxcontainers.org/incus/introduction/) containers, this means
-they are on the half way point between containerized processes (e.g. Docker) and full-fledged VM (e.g. Proxmox).
-This allows Zerops to easily run multiple processes on a single container.
+Zerops containers are based on [Incus](https://linuxcontainers.org/incus/introduction/) containers, placing them
+at a midpoint between containerized processes (e.g., Docker) and full-fledged VMs (e.g., Proxmox).
+This architecture allows Zerops to easily run multiple processes within a single container.
 
 This example shows how to run Node.js application that uses SQLite along with [Litestream](https://litestream.io/),
 to persist the database throughout deployments.
