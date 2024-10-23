@@ -60,7 +60,12 @@ zerops:
           path: /status
 ```
 
+
 ### litestream.yml
+Litestream configuration file. Litestream automatically replaces
+environment varibles, so we make use of the env variables Zerops
+automatically generates for our object storage service.
+
 ```yaml
 access-key-id: $storage_accessKeyId
 secret-access-key: $storage_secretAccessKey
@@ -69,8 +74,26 @@ dbs:
   - path: $DB_NAME
     replicas:
       - type: s3
+        path: $DB_NAME
         bucket: $storage_bucketName
         endpoint: $storage_apiUrl
-        path: $DB_NAME
         force-path-style: true
+```
+
+## Test it yourself
+Import this project to your Zerops account.
+
+```yaml
+project:
+  name: start-commands-example
+
+services:
+  - hostname: storage
+    type: object-storage
+    objectStorageSize: 2
+
+  - hostname: api
+    type: nodejs@20
+    buildFromGit: https://github.com/zeropsio/start-commands-example
+    enableSubdomainAccess: true
 ```
