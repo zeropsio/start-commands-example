@@ -43,7 +43,7 @@ zerops:
         DB_NAME: database.db
       # here instead of standard `start` property, we use `startCommands`
       # which allows us to define multiple commands (both start and init)
-      # as well as name the set to allows for filtering in runtime logs
+      # as well as name the set, to allow for convinient filtering in runtime logs
       startCommands:
         # start the application
         - command: npm run start:prod
