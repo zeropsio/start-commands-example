@@ -1,0 +1,38 @@
+zerops:
+  - setup: api
+    build:
+      base: nodejs@20
+      prepareCommands:
+        - npm install -g typescript
+      buildCommands:
+        - npm i
+        - npm run build
+      deployFiles:
+        - ./dist
+        - ./node_modules
+        - ./package.json
+        - ./litestream.yml
+    run:
+      base: nodejs@20
+      prepareCommands:
+        - wget https://github.com/benbjohnson/litestream/releases/download/v0.3.13/litestream-v0.3.13-linux-amd64.tar.gz
+        - tar -xzf litestream-v0.3.13-linux-amd64.tar.gz
+        - rm litestream-v0.3.13-linux-amd64.tar.gz
+        - mv litestream /usr/local/bin/
+      ports:
+        - port: 3000
+          httpSupport: true
+      envVariables:
+        NODE_ENV: production
+        DB_NAME: database.db
+      startCommands:
+        - command: npm run start:prod
+          name: server
+        - command: litestream replicate -config=litestream.yml
+          name: replication
+          initCommands:
+            - litestream restore -if-replica-exists -if-db-not-exists -config=litestream.yml $DB_NAME
+      healthCheck:
+        httpGet:
+          port: 3000
+          path: /status

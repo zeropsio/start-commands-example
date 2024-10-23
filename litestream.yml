@@ -1,0 +1,11 @@
+access-key-id: $storage_accessKeyId
+secret-access-key: $storage_secretAccessKey
+
+dbs:
+  - path: $DB_NAME
+    replicas:
+      - type: s3
+        bucket: $storage_bucketName
+        endpoint: $storage_apiUrl
+        path: $DB_NAME
+        force-path-style: true
