@@ -32,7 +32,7 @@ zerops:
         - wget https://github.com/benbjohnson/litestream/releases/download/v0.3.13/litestream-v0.3.13-linux-amd64.tar.gz
         - tar -xzf litestream-v0.3.13-linux-amd64.tar.gz
         - rm litestream-v0.3.13-linux-amd64.tar.gz
-        - mv litestream /usr/local/bin/
+        - sudo mv litestream /usr/local/bin/
       ports:
         - port: 3000
           httpSupport: true
