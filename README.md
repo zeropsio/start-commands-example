@@ -60,16 +60,16 @@ environment varibles, so we make use of the env variables Zerops
 automatically generates for our object storage service.
 
 ```yaml
-access-key-id: $storage_accessKeyId
-secret-access-key: $storage_secretAccessKey
+access-key-id: $STORAGE_ACCESS_KEY_ID
+secret-access-key: $STORAGE_SECRET_ACCESS_KEY
 
 dbs:
   - path: $DB_NAME
     replicas:
       - type: s3
         path: $DB_NAME
-        bucket: $storage_bucketName
-        endpoint: $storage_apiUrl
+        bucket: $STORAGE_BUCKET_NAME
+        endpoint: $STORAGE_API_URL
         force-path-style: true
 ```
 
