@@ -8,7 +8,8 @@ This example shows how to run Node.js application that uses SQLite along with [L
 to persist the database throughout deployments.
 
 ### [zerops.yml](https://github.com/zeropsio/start-commands-example/blob/main/zerops.yml)
-```yamlzerops:
+```yaml
+zerops:
   - setup: api
     build:
       base: nodejs@20
