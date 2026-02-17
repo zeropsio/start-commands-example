@@ -15,9 +15,9 @@ zerops:
     run:
       base: nodejs@20
       prepareCommands:
-        - sudo wget https://github.com/benbjohnson/litestream/releases/download/v0.3.13/litestream-v0.3.13-linux-amd64.tar.gz
-        - sudo tar -xzf litestream-v0.3.13-linux-amd64.tar.gz
-        - sudo rm litestream-v0.3.13-linux-amd64.tar.gz
+        - wget https://github.com/benbjohnson/litestream/releases/download/v0.3.13/litestream-v0.3.13-linux-amd64.tar.gz
+        - tar -xzf litestream-v0.3.13-linux-amd64.tar.gz
+        - rm litestream-v0.3.13-linux-amd64.tar.gz
         - sudo mv litestream /usr/local/bin/
       ports:
         - port: 3000
