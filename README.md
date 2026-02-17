@@ -8,8 +8,7 @@ This example shows how to run Node.js application that uses SQLite along with [L
 to persist the database throughout deployments.
 
 ### [zerops.yml](https://github.com/zeropsio/start-commands-example/blob/main/zerops.yml)
-```yaml
-zerops:
+```yamlzerops:
   - setup: api
     build:
       base: nodejs@20
@@ -25,9 +24,6 @@ zerops:
         - ./litestream.yml
     run:
       base: nodejs@20
-      # here we install litestream, downloading the packed
-      # binary for Alpine (the default OS used for Zerops containers)
-      # unpacking it and moving it to bin
       prepareCommands:
         - wget https://github.com/benbjohnson/litestream/releases/download/v0.3.13/litestream-v0.3.13-linux-amd64.tar.gz
         - tar -xzf litestream-v0.3.13-linux-amd64.tar.gz
@@ -36,22 +32,18 @@ zerops:
       ports:
         - port: 3000
           httpSupport: true
-      # for convinience, we save the name of our database file
-      # to environment variables
       envVariables:
         NODE_ENV: production
         DB_NAME: database.db
-      # here instead of standard `start` property, we use `startCommands`
-      # which allows us to define multiple commands (both start and init)
-      # as well as name the set, to allow for convinient filtering in runtime logs
+        STORAGE_API_URL: $storage_apiUrl
+        STORAGE_ACCESS_KEY_ID: $storage_accessKeyId
+        STORAGE_SECRET_ACCESS_KEY: $storage_secretAccessKey
+        STORAGE_BUCKET_NAME: $storage_bucketName
       startCommands:
-        # start the application
         - command: npm run start:prod
           name: server
-        # start the replication
         - command: litestream replicate -config=litestream.yml
           name: replication
-          # restore the database on container init
           initCommands:
             - litestream restore -if-replica-exists -if-db-not-exists -config=litestream.yml $DB_NAME
       healthCheck:
